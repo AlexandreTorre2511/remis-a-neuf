@@ -1,0 +1,12 @@
+# Archives de livraison
+*.zip
+
+# Outils locaux
+.claude/
+.netlify/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Dépendances éventuelles (le site n'en utilise aucune aujourd'hui)
+node_modules/

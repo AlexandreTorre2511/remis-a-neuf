@@ -1,0 +1,33 @@
+# Déploiement Netlify — site statique, aucune étape de build.
+
+[build]
+  publish = "site"
+  command = ""
+
+# Les pages HTML doivent toujours être revalidées : une mise à jour de contenu
+# est visible immédiatement.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Les noms de fichiers CSS/JS ne sont pas versionnés : cache court volontairement.
+[[headers]]
+  for = "/assets/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/assets/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+# Les images sont remplacées par un nouveau fichier, pas modifiées en place.
+[[headers]]
+  for = "/assets/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
